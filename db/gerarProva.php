@@ -30,19 +30,24 @@ if (isset($_POST['materias'])) {
 
     while ($row = mysqli_fetch_array($sqlResult)) {
 
-        $idQuestoes[] = $row['idQuestao'];
+        $idQuestoes[] = intval($row['idQuestao']);
     }
 
     if (count($idQuestoes) >= $numQuestoes) {
 
         $rand_keys = array_rand($idQuestoes, $numQuestoes);
+        
+        var_dump($idQuestoes);
+        die();
 
         $query = "INSERT INTO `provas` (`idProva`, `cpf`) VALUES (NULL, '$cpf');";
         $sqlResult = mysqli_query($dbConnection, $query);
 
         if ($sqlResult) {
             $ultimoId = mysqli_insert_id($dbConnection);
-
+            
+            
+                
             foreach ($rand_keys as &$value) {
                 $sqlStr = "INSERT INTO `provas_questoes` (`idProva`, `idQuestao`) VALUES ('$ultimoId', '$value')";
                 $sqlResult = mysqli_query($dbConnection, $sqlStr);
