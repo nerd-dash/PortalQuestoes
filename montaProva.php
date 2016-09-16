@@ -20,7 +20,7 @@ and open the template in the editor.
             require 'db/listarDisciplinas.php';
             ?>
             <label>Quantidade de questões</label>
-            <input type="number">
+            <input type="number" name="numQuestoes">
             <input type="submit" value="Gerar Prova">
         </form>
 
