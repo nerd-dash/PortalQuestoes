@@ -28,19 +28,37 @@ if (isset($_POST['materias'])) {
 
     $sqlResult = mysqli_query($dbConnection, $query);
 
-
     while ($row = mysqli_fetch_array($sqlResult)) {
 
         $idQuestoes[] = $row['idQuestao'];
     }
 
+    if (count($idQuestoes) >= $numQuestoes) {
+
+        $rand_keys = array_rand($idQuestoes, $numQuestoes);
+
+        $query = "INSERT INTO `provas` (`idProva`, `cpf`) VALUES (NULL, '$cpf');";
+        $sqlResult = mysqli_query($dbConnection, $query);
+
+        if ($sqlResult) {
+            $ultimoId = mysqli_insert_id($dbConnection);
+
+            foreach ($rand_keys as &$value) {
+                $sqlStr = "INSERT INTO `provas_questoes` (`idProva`, `idQuestao`) VALUES ('$ultimoId', '$value')";
+                $sqlResult = mysqli_query($dbConnection, $sqlStr);
+                if (!$sqlResult) {
+                    die("Erro ao inserir questões na prova :" . mysqli_errno($dbConnection));
+                } else {
+                    echo "<script> alert('Sua prova foi criada!'); window.history.back();</script>";
+                }
+            }
+        }
+    } else {
+        // Nâo tem no banco a quantidade de respostas solicitadas
+    }
+
     mysqli_free_result($sqlResult);
     mysqli_close($dbConnection);
-
-
-    if (count($idQuestoes) >= $numQuestoes) {
-        
-    }
 } else {
     echo "<script>window.location.replace('../menu.php');</script>";
 }
