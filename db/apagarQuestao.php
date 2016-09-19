@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-
+session_start();
 require 'block.php';
 
 if (isset($_POST['questoes'])) {

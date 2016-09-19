@@ -26,6 +26,7 @@ if (isset($_POST['materias'])) {
     }
     $query = "SELECT idQuestao FROM questoes WHERE idDisciplina IN ($idDisciplinaList) AND cpf = '$cpf'";
 
+
     $sqlResult = mysqli_query($dbConnection, $query);
 
     while ($row = mysqli_fetch_array($sqlResult)) {
@@ -33,33 +34,37 @@ if (isset($_POST['materias'])) {
         $idQuestoes[] = intval($row['idQuestao']);
     }
 
+
     if (count($idQuestoes) >= $numQuestoes) {
 
-        $rand_keys = array_rand($idQuestoes, $numQuestoes);
-        
-        var_dump($idQuestoes);
-        die();
+        shuffle($idQuestoes);
 
         $query = "INSERT INTO `provas` (`idProva`, `cpf`) VALUES (NULL, '$cpf');";
         $sqlResult = mysqli_query($dbConnection, $query);
 
         if ($sqlResult) {
             $ultimoId = mysqli_insert_id($dbConnection);
+
+            $valuesArgument = "";
             
-            
-                
-            foreach ($rand_keys as &$value) {
-                $sqlStr = "INSERT INTO `provas_questoes` (`idProva`, `idQuestao`) VALUES ('$ultimoId', '$value')";
-                $sqlResult = mysqli_query($dbConnection, $sqlStr);
-                if (!$sqlResult) {
-                    die("Erro ao inserir questões na prova :" . mysqli_errno($dbConnection));
-                } else {
-                    echo "<script> alert('Sua prova foi criada!'); window.history.back();</script>";
+            for ($index = 0; $index < $numQuestoes; $index++) {
+                $valuesArgument .= "('". $ultimoId ."', '". $idQuestoes[$index]. "')";
+                if ($index < $numQuestoes - 1) {
+                    $valuesArgument .= ",";
                 }
+            }
+            
+            $sqlStr = "INSERT INTO `provas_questoes` (`idProva`, `idQuestao`) VALUES " .$valuesArgument;
+            $sqlResult = mysqli_query($dbConnection, $sqlStr);
+            
+            if (!$sqlResult) {
+                die("Erro ao inserir questões na prova :" . mysqli_errno($dbConnection));
+            } else {
+                echo "<script> alert('Sua prova foi criada!'); window.history.back();</script>";
             }
         }
     } else {
-        // Nâo tem no banco a quantidade de respostas solicitadas
+        echo "<script> alert('Não existem questões suficientes cadastradas para esta prova.'); window.history.back();</script>";
     }
 
     mysqli_free_result($sqlResult);
