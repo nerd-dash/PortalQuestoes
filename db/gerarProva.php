@@ -11,8 +11,8 @@ require 'block.php';
 if (isset($_POST['materias'])) {
 
     require_once 'dbConnect.php';
-    $materias = $_POST['materias'];
-    $numQuestoes = $_POST['numQuestoes'];
+    $materias = preg_replace("/[^0-9]/", "", $_POST['materias']);
+    $numQuestoes = preg_replace("/[^0-9]/", "", $_POST['numQuestoes']);
 
     $idDisciplinaList = "";
 
@@ -33,7 +33,6 @@ if (isset($_POST['materias'])) {
 
         $idQuestoes[] = intval($row['idQuestao']);
     }
-
 
     if (count($idQuestoes) >= $numQuestoes) {
 

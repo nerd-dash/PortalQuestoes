@@ -16,7 +16,10 @@ while ($row = mysqli_fetch_array($sql)) {
 
     $materia = $row['materia'];
     $id = $row['idDisciplina'];
-    echo "<option id='disciplina" . $id . "' value='$id'> $materia </option>";
+    $periodo = $row['periodo'];
+    $semestre = $row['semestre'];
+    $ano = $row['ano'];
+    echo "<option id='disciplina" . $id . "' value='$id'> ". $materia ." " . $periodo . "º Perído </option>";
 }
 mysqli_close($dbConnection);
 
