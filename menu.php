@@ -16,10 +16,10 @@
                     <ul class="nav nav-pills nav-stacked">
                         <li role="presentation"><a href="novaQuestao.php">Inserir Nova Questão</a></li>
                         <li role="presentation"><a href="apagaQuestao.php">Apagar Questão</a></li>
-                        <li role="presentation"><a href="atualizarQuestao.php">Atualizar Questão</a></li>
+                        <li role="presentation"><a href="atualizaQuestao.php">Atualizar Questão</a></li>
                         <li role="presentation"><a href="mostraQuestoes.php">Mostrar todas Questões</a></li>
                         <li role="presentation"><a href="montaProva.php">Montar uma Prova</a></li>
-                        <li role="presentation"><a href="#">Lançamento de Frequência</a></li>
+                        <li role="presentation"><a href="lancaFrequencia.php">Lançamento de Frequência</a></li>
                         <li role="presentation"><a href="#">Sair</a></li>
                     </ul>
                 </div>

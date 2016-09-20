@@ -14,8 +14,12 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        include_once 'db/listarAlunos.php';
-        ?>
+        <form method="post" action="db/persistePresenca.php" >
+            <?php
+            include_once 'db/listarDisciplinas.php';
+            include_once 'db/listarAlunos.php';
+            ?>
+            <input type="submit" value="Registrar Presença">
+        </form>
     </body>
 </html>
