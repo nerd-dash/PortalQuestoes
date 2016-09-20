@@ -15,11 +15,14 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <h2>Prof. <?php echo $nome . " - " . $_SESSION['descDisciplina'] ?></h2>
+        <h3>Atualizar Questão </h3>
         <form method="post" action="updateQuestao.php">
             <?php
             require_once 'db/listarQuestoesAlternativas.php';
             ?>
             <input type="submit" value="Escolher">
         </form>
+        <a href="menu.php">Voltar ao Menu</a>
     </body>
 </html>

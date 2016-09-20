@@ -14,9 +14,12 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <h2>Prof. <?php echo $nome . " - " . $_SESSION['descDisciplina'] ?></h2>
+        <h3>Apagar Questão </h3>
         <form method="post" action="db/apagarQuestao.php">
-            <?php require_once 'db/listarQuestoes.php';?>
+            <?php require_once 'db/listarQuestoes.php'; ?>
             <input type="submit" value="Apagar">
-        </form>            
+        </form>
+        <a href="menu.php">Voltar ao Menu</a>
     </body>
 </html>

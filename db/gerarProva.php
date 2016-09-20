@@ -69,5 +69,5 @@ if (isset($_POST['materias'])) {
     mysqli_free_result($sqlResult);
     mysqli_close($dbConnection);
 } else {
-    echo "<script>window.location.replace('../menu.php');</script>";
+    echo "<script> alert('Você deve selecionar pelo menos uma matéria');</script>";
 }

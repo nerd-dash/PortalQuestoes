@@ -15,11 +15,13 @@ and open the template in the editor.
     </head>
     <body>
         <form method="post" action="db/persistePresenca.php" >
+            <h2>Prof. <?php echo $nome . " - " . $_SESSION['descDisciplina'] ?></h2>
+            <h3>Laçar Frequência</h3>
             <?php
-            include_once 'db/listarDisciplinas.php';
             include_once 'db/listarAlunos.php';
             ?>
             <input type="submit" value="Registrar Presença">
         </form>
+        <a href="menu.php">Voltar ao Menu</a>
     </body>
 </html>

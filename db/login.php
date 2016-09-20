@@ -40,7 +40,7 @@ if (empty($_POST['inputCpf']) or empty($_POST['inputSenha'])) {
     if (!$loggedIn) {
         echo "<script> alert('Os dados insieridos são inválidos!'); window.history.back();</script>";
     } else {
-        header("Location: ../menu.php");
+        header("Location: ../disciplinaSelect.php");
     }
 }
 ?>

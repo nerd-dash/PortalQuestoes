@@ -15,7 +15,8 @@ and open the template in the editor.
     </head>
     <body>
         <form method="post" action="db/gerarProva.php">
-            <label>Disciplinas da prova</label>
+            <h2>Prof. <?php echo $nome  ?></h2>
+            <h3>Disciplinas da prova</h3>
             <?php
             require 'db/listarDisciplinas.php';
             ?>
@@ -23,6 +24,6 @@ and open the template in the editor.
             <input type="number" name="numQuestoes">
             <input type="submit" value="Gerar Prova">
         </form>
-
+        <a href="menu.php">Voltar ao Menu</a>
     </body>
 </html>

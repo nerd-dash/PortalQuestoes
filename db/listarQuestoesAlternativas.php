@@ -10,7 +10,7 @@
 require 'block.php';
 require_once "dbConnect.php";
 
-$query = "SELECT questao, idQuestao FROM `questoes` WHERE cpf = '$cpf'";
+$query = "SELECT questao, idQuestao FROM `questoes` WHERE cpf = '$cpf' and idDisciplina = '".$_SESSION['idDisciplina']."'";
 $sql = mysqli_query($dbConnection, $query);
 
 if (mysqli_num_rows($sql) > 0) {

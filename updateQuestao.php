@@ -36,9 +36,6 @@ and open the template in the editor.
     </head>
     <body>
         <form method="post" action="db/updateQuestao.php">
-            <select id="disciplina" name="disciplina">
-                <?php require_once 'db/selectDisciplinas.php'; ?>
-            </select>
             <textarea name="questao"><?php echo $questao ?></textarea>
             <?php
             include "db/dbConnect.php";
@@ -67,4 +64,5 @@ and open the template in the editor.
 
         </script>
     </body>
+    <a href="menu.php">Voltar ao Menu</a>
 </html>

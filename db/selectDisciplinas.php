@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-session_start();
+
 require 'block.php';
 require_once "dbConnect.php";
 
@@ -14,12 +14,9 @@ $sql = mysqli_query($dbConnection, $query);
 
 while ($row = mysqli_fetch_array($sql)) {
 
-    $materia = $row['materia'];
     $id = $row['idDisciplina'];
-    $periodo = $row['periodo'];
-    $semestre = $row['semestre'];
-    $ano = $row['ano'];
-    echo "<option id='disciplina" . $id . "' value='$id'> ". $materia ." " . $periodo . "º Perído </option>";
+    $descricao = $row['materia']  . " - " . $row['periodo'] ."º período " . $row['semestre'] ."º semestre de ". $row['ano'];
+    echo "<option id='disciplina" . $id . "' value='$id'> $descricao </option>";
 }
 mysqli_close($dbConnection);
 

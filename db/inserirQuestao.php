@@ -12,7 +12,7 @@ require 'block.php';
 require_once 'dbConnect.php';
 
 $cpf = $_SESSION['cpf'];
-$disciplina = preg_replace("/[^0-9]/", "", $_POST['disciplina']);
+$disciplina = preg_replace("/[^0-9]/", "", $_SESSION['idDisciplina']);
 $questao = $_POST['questao'];
 $correta = preg_replace("/[^0-9]/", "", $_POST['altCorreta']);
 
