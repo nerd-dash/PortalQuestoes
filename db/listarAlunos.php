@@ -9,18 +9,19 @@
 require 'block.php';
 require_once "dbConnect.php";
 
-$idDisciplina = 1;
+$idDisciplina = $_SESSION['idDisciplina'];
 
-$query = "SELECT nome, idAluno FROM `alunos` WHERE idAluno IN (SELECT idAluno FROM aluno_disciplina WHERE idDisciplina = '$idDisciplina')";
+$query = "SELECT a.idAluno, a.nome, d.presencas FROM alunos as a, aluno_disciplina as d WHERE a.idAluno = d.idAluno AND d.idDisciplina = '$idDisciplina';";
 
 $sql = mysqli_query($dbConnection, $query);
 
 if (mysqli_num_rows($sql) > 0) {
+    
     while ($row = mysqli_fetch_array($sql)) {
 
-        $nome = $row['nome'];
+        $info = $row['nome'] . " - " . $row['presencas'] ." presenças";
         $id = $row['idAluno'];
-        echo "<div><input type='checkbox' name='alunos[]' value='$id'><p id='aluno$id'> $nome </p></div>";
+        echo "<div><input type='checkbox' name='alunos[]' value='$id'><p id='aluno$id'> $info </p></div>";
     }
 } else {
     echo "<div><label>Não há alunos cadastrados nesta matéria.</label><div>";

@@ -10,15 +10,15 @@
 require 'block.php';
 require_once "dbConnect.php";
 
-$query = "SELECT idDisciplina, materia FROM `disciplinas` WHERE idDisciplina IN( SELECT idDisciplina FROM disciplinas_professor WHERE cpf='$cpf')";
+$query = "SELECT * FROM `disciplinas` WHERE idDisciplina IN( SELECT idDisciplina FROM disciplinas_professor WHERE cpf='$cpf')";
 $sql = mysqli_query($dbConnection, $query);
 
 if (mysqli_num_rows($sql) > 0) {
     while ($row = mysqli_fetch_array($sql)) {
 
-        $materia = $row['materia'];
+        $descricao = $row['materia']  . " - " . $row['periodo'] ."º período " . $row['semestre'] ."º semestre de ". $row['ano'];$materia = $row['materia'];
         $id = $row['idDisciplina'];
-        echo "<div><input type='checkbox' name='materias[]' value='$id'><p id='questao$id'> $materia </p></div>";
+        echo "<div><input type='checkbox' name='materias[]' value='$id'><p id='questao$id'> $descricao </p></div>";
     }
 } else {
     echo "<div><label>Não há matérias cadastradas.</label><div>";

@@ -47,7 +47,7 @@ if ($sqlResult) {
         if (!$sqlResult) {
             die("Erro ao atualizar respostas :" . mysqli_errno($dbConnection));
         } else {
-            echo "<script> alert('Sua questão foi armazenada!'); window.location.replace('../atualizaQuestao.php');</script>";
+            echo "<script> alert('Sua questão foi armazenada!'); window.location.replace('../areadoprofessor/atualizaQuestao.php');</script>";
         }
     }
 }

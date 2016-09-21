@@ -13,6 +13,8 @@ if (isset($_POST['alunos'])) {
 
     require_once 'dbConnect.php';
     $alunos = $_POST['alunos'];
+    
+    $idDisciplina = $_SESSION['idDisciplina'];
 
     $idAlunosList = "";
 
@@ -25,19 +27,17 @@ if (isset($_POST['alunos'])) {
         }
     }
     $query = "UPDATE aluno_disciplina SET presencas = presencas + 1 WHERE idDisciplina = '$idDisciplina' AND idAluno IN ($idAlunosList)";
-    echo $query;
-    die();
     $sqlResult = mysqli_query($dbConnection, $query);
 
 
     if ($sqlResult) {
-        echo "<script> alert('Os dados de presença foram salvos!'); window.location.replace('../menu.php');</script>";
+        echo "<script> alert('Os dados de presença foram salvos!'); window.location.replace('../areadoprofessor/lancaFrequencia.php');</script>";
     } else {
         die("Erro ao registrar presenças :" . mysqli_errno($dbConnection));
     }
 
     mysqli_close($dbConnection);
 } else {
-    echo "<script>window.location.replace('../menu.php');</script>";
+    echo "<script>window.location.replace('../areadoprofessor/lancaFrequencia.php');</script>";
 }
 

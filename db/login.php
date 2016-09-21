@@ -2,7 +2,7 @@
 <?php
 
 if (empty($_POST['inputCpf']) or empty($_POST['inputSenha'])) {
-    header("Location: ../index.php");
+    header("Location: ../areadoprofessor/index.php");
     die();
     
 } else {
@@ -40,7 +40,7 @@ if (empty($_POST['inputCpf']) or empty($_POST['inputSenha'])) {
     if (!$loggedIn) {
         echo "<script> alert('Os dados insieridos são inválidos!'); window.history.back();</script>";
     } else {
-        header("Location: ../disciplinaSelect.php");
+        header("Location: ../areadoprofessor/disciplinaSelect.php");
     }
 }
 ?>

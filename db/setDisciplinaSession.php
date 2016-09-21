@@ -22,4 +22,4 @@ $sql = mysqli_query($dbConnection, $query);
            . $row['semestre'] ."º semestre de ". $row['ano'];
     }
 
-header("Location: ../menu.php");
+header("Location: ../areadoprofessor/menu.php");

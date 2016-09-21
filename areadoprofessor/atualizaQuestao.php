@@ -9,7 +9,7 @@ and open the template in the editor.
     <head>
         <?php
         session_start();
-        require 'db/block.php';
+        require '../db/block.php';
         ?>
         <meta charset="UTF-8">
         <title></title>
@@ -19,7 +19,7 @@ and open the template in the editor.
         <h3>Atualizar Questão </h3>
         <form method="post" action="updateQuestao.php">
             <?php
-            require_once 'db/listarQuestoesAlternativas.php';
+            require_once '../db/listarQuestoesAlternativas.php';
             ?>
             <input type="submit" value="Escolher">
         </form>

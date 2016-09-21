@@ -9,13 +9,13 @@ and open the template in the editor.
     <head>
         <?php
         session_start();
-        require 'db/block.php';
+        require '../db/block.php';
 
 
         $_SESSION['questaoId'] = preg_replace("/[^0-9]/", "", $_POST['questaoRadio']);
         $questaoId = preg_replace("/[^0-9]/", "", $_POST['questaoRadio']);
 
-        require_once "db/dbConnect.php";
+        require_once "../db/dbConnect.php";
 
         $queryQuestao = "SELECT questao, idDisciplina FROM questoes where idQuestao = '$questaoId'";
         $sqlQuestao = mysqli_query($dbConnection, $queryQuestao);
@@ -35,10 +35,10 @@ and open the template in the editor.
         <meta charset="utf-8">
     </head>
     <body>
-        <form method="post" action="db/updateQuestao.php">
+        <form method="post" action="../db/updateQuestao.php">
             <textarea name="questao"><?php echo $questao ?></textarea>
             <?php
-            include "db/dbConnect.php";
+            include "../db/dbConnect.php";
             $idRadio = 1;
             while ($alt = mysqli_fetch_array($sqlAlternativas)) {
 

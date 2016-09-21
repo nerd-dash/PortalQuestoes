@@ -8,17 +8,18 @@ and open the template in the editor.
     <head>
         <?php
         session_start();
-        require 'db/block.php';
+        require '../db/block.php';
         ?>
         <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
-        <h2>Prof. <?php echo $nome . " - " . $_SESSION['descDisciplina'] ?></h2>
-        <h3>Questões Cadastradas</h3>
-        <?php
-        require_once 'db/mostrarQuestoes.php';
-        ?>
+        <form method="post" action="../db/setDisciplinaSession.php">
+            <select name="idDisciplina">
+                <?php include_once '../db/selectDisciplinas.php'; ?>  
+            </select>
+            <input type="submit" value="Acessar">
+        </form>
         <a href="menu.php">Voltar ao Menu</a>
     </body>
 </html>

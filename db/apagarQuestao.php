@@ -31,14 +31,14 @@ if (isset($_POST['questoes'])) {
 
 
     if ($sqlResult) {
-        echo "<script> alert('As questões foram apagadas!'); window.location.replace('../menu.php');</script>";
+        echo "<script> alert('As questões foram apagadas!'); window.location.replace('../areadoprofessor/menu.php');</script>";
     } else {
         die("Erro ao apagar questão :" . mysqli_errno($dbConnection));
     }
 
     mysqli_close($dbConnection);
 } else {
-    echo "<script>window.location.replace('../menu.php');</script>";
+    echo "<script>window.location.replace('../areadoprofessor/menu.php');</script>";
 }
 
 

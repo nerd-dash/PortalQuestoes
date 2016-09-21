@@ -8,19 +8,21 @@ and open the template in the editor.
     <head>
         <?php
         session_start();
-        require 'db/block.php';
+        require '../db/block.php';
         ?>
         <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
-        <form method="post" action="db/persistePresenca.php" >
-            <h2>Prof. <?php echo $nome . " - " . $_SESSION['descDisciplina'] ?></h2>
-            <h3>Laçar Frequência</h3>
+        <form method="post" action="../db/gerarProva.php">
+            <h2>Prof. <?php echo $nome  ?></h2>
+            <h3>Disciplinas da prova</h3>
             <?php
-            include_once 'db/listarAlunos.php';
+            require '../db/listarDisciplinas.php';
             ?>
-            <input type="submit" value="Registrar Presença">
+            <label>Quantidade de questões</label>
+            <input type="number" name="numQuestoes" min="1">
+            <input type="submit" value="Gerar Prova">
         </form>
         <a href="menu.php">Voltar ao Menu</a>
     </body>
