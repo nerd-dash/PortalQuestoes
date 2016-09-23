@@ -12,15 +12,26 @@ require_once "dbConnect.php";
 
 $N = count($_SESSION['idDisciplinas']);
 
+$idDisciplinasList= "";
+        
 for ($i = 0; $i < $N; $i++) {
-    $idDisciplinasList = $idDisciplinasList . $alunos[$i];
+    $idDisciplinasList = $idDisciplinasList . $_SESSION['idDisciplinas'][$i];
     if ($i < $N - 1) {
         $idDisciplinasList = $idDisciplinasList . ",";
     }
 }
 
-$query = "SELECT DISTINCT idProva FROM prova_disciplina WHERE idDisciplina IN ($idDisciplinasList)";
+$query = "SELECT DISTINCT idProva, GROUP_CONCAT(disciplinas.materia SEPARATOR ', ') AS materias "
+        . "FROM prova_disciplina, disciplinas WHERE disciplinas.idDisciplina = prova_disciplina.idDisciplina "
+        . "AND idProva IN (SELECT DISTINCT idProva FROM prova_disciplina WHERE idDisciplina IN ($idDisciplinasList)) GROUP BY idProva";
 $sqlResult = mysqli_query($dbConnection, $query);
+
+while ($row = mysqli_fetch_array($sqlResult)) {
+
+        $id = $row['idProva'];       
+        $materias = $row['materias']; 
+       echo "<label><input type='radio' name='questaoRadio' value='$id'><p>Prova ". $id . " - " .$materias. "</p></label>";
+    }
 
 
 mysqli_close($dbConnection);

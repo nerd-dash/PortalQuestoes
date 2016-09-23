@@ -10,6 +10,7 @@ require 'block.php';
 require_once "dbConnect.php";
 
 $idDisciplina = $_SESSION['idDisciplina'];
+$numeroDeAulas = $_SESSION['numeroDeAulas'];
 
 $query = "SELECT a.idAluno, a.nome, d.presencas FROM alunos as a, aluno_disciplina as d WHERE a.idAluno = d.idAluno AND d.idDisciplina = '$idDisciplina';";
 
@@ -19,7 +20,7 @@ if (mysqli_num_rows($sql) > 0) {
     
     while ($row = mysqli_fetch_array($sql)) {
 
-        $info = $row['nome'] . " - " . $row['presencas'] ." presenças";
+        $info = $row['nome'] . " - " . $row['presencas'] ." de " . $numeroDeAulas . " presenças";
         $id = $row['idAluno'];
         echo "<div><input type='checkbox' name='alunos[]' value='$id'><p id='aluno$id'> $info </p></div>";
     }

@@ -14,8 +14,13 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        include_once '../db/listarProvas.php';
-        ?>
+        <form method="post" action="respondeProva.php">
+            <h2><?php echo $nome  ?> </h2>
+        <h3>Provas Disponíveis</h3>
+            <?php
+            include_once '../db/listarProvas.php';
+            ?>
+            <button type="submit">Fazer essa prova</button>
+        </form>
     </body>
 </html>

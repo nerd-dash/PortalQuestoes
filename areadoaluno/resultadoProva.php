@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        header("Location: areadoaluno/index.php");
+        // put your code here
         ?>
     </body>
 </html>
