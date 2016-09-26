@@ -68,10 +68,10 @@ and open the template in the editor.
                         $_SESSION['idAlt' . ($idRadio - 1)] = $alt['idAlternativa'];
 
                         if ($alt['correta'] == 1) {
-                            echo "<div class='row-fluid header'><div class='input-group'><span class='input-group-addon'><input type='radio' name='altCorreta' value='$idRadio' checked='checked'></span><input class='form-control' type='text' name='resposta" . $idRadio . "' value='" . $alt['resposta'] . "'></div></div>";
+                            echo "<div class='row-fluid header'><div class='input-group'><span class='input-group-addon clickable'><input class='check' type='radio' name='altCorreta' value='$idRadio' checked='checked'></span><input class='form-control' type='text' name='resposta" . $idRadio . "' value='" . $alt['resposta'] . "'></div></div>";
                         } else {
 
-                            echo "<div class='row-fluid header'><div class='input-group'><span class='input-group-addon'><input type='radio' name='altCorreta' value='$idRadio'></span><input class='form-control' type='text' name='resposta" . $idRadio . "' value='" . $alt['resposta'] . "'></div></div>";
+                            echo "<div class='row-fluid header'><div class='input-group'><span class='input-group-addon clickable'><input class='check' type='radio' name='altCorreta' value='$idRadio'></span><input class='form-control' type='text' name='resposta" . $idRadio . "' value='" . $alt['resposta'] . "'></div></div>";
                         }
                         $idRadio++;
                     }

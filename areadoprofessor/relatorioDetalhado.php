@@ -33,7 +33,6 @@
                     <?php  include_once '../db/detalharFrequencia.php' ?>
                 </div>
                 <div class="form-group">                    
-                    <button class="btn btn-primary " type="submit">Detalhar</button>
                     <a class="btn btn-default " role="button" href="relatorioFrequencia.php">Voltar</a>
                 </div>
             </form>

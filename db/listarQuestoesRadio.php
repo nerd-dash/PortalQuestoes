@@ -18,7 +18,7 @@ if (mysqli_num_rows($sql) > 0) {
 
         $questao = $row['questao'];
         $id = $row['idQuestao'];
-        echo "<div class='panel panel-default clickable'><div class='panel-heading'><div class='radio-inline'><input type='radio' name='questaoRadio' value='questao$id'>$questao</div></div><div class='panel-body'>";
+        echo "<div class='panel panel-default clickable'><div class='panel-heading'><div class='radio-inline'><input class='check' type='radio' name='questaoRadio' value='questao$id'>$questao</div></div><div class='panel-body'>";
 
         $queryAlternativas = "SELECT resposta, correta FROM `alternativas` WHERE idQuestao = '$id'";
 

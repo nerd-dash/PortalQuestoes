@@ -24,7 +24,7 @@ if (mysqli_num_rows($sql) > 0) {
         echo "<div class='panel panel-default'>
                 <div class='panel-body'>
                     <h4 lass='form-signin-heading'>".$numeroQuestao++.") $questao </h4>";
-        $queryAlternativas = "SELECT idAlternativa, resposta FROM `alternativas` WHERE idQuestao = '$id'";
+        $queryAlternativas = "SELECT idAlternativa, resposta FROM `alternativas` WHERE idQuestao = '$id' ORDER BY rand()";
         $sqlAlternativas = mysqli_query($dbConnection, $queryAlternativas);
         $counter = 0;
         while ($alt = mysqli_fetch_array($sqlAlternativas)) {

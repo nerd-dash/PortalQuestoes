@@ -19,7 +19,7 @@ if (mysqli_num_rows($sql) > 0) {
 		$questao = $row['questao'];
 		$id = $row['idQuestao'];
 		
-		echo "<div class='panel panel-default clickable'><div class='panel-heading'><div class='checkbox-inline'><input type='checkbox' name='questoes[]' value='$id'><p id='questao$id'>$questao</p></div></div></div>";
+		echo "<div class='panel panel-default clickable'><div class='panel-heading'><div class='checkbox-inline'><input class='check' type='checkbox' name='questoes[]' value='$id'><p id='questao$id'>$questao</p></div></div></div>";
 	}
 } else {
 	echo "<div class='alert alert-warning' role='alert'>Não existem questões cadastrardas.</div>";
