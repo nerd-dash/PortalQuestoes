@@ -18,10 +18,11 @@ if (mysqli_num_rows($sql) > 0) {
 
         $descricao = $row['materia']  . " - " . $row['periodo'] ."º período " . $row['semestre'] ."º semestre de ". $row['ano'];$materia = $row['materia'];
         $id = $row['idDisciplina'];
-        echo "<div><input type='checkbox' name='materias[]' value='$id'><p id='questao$id'> $descricao </p></div>";
+
+        echo "<div class='panel panel-default clickable'><div class='panel-heading'><div class='checkbox-inline'><input class='check' type='checkbox' name='materias[]' value='$id'><span>$descricao</span></div></div></div>";
     }
 } else {
-    echo "<div><label>Não há matérias cadastradas.</label><div>";
+    echo "<div class='alert alert-warning' role='alert'>Não há matérias cadastradas.</div>";
 }
 
 mysqli_close($dbConnection);

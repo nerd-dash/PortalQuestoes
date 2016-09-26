@@ -6,7 +6,6 @@
  * and open the template in the editor.
  */
 
-   session_unset();
-    session_destroy();
-    header('location:index.php');
-    die();
+session_unset();
+session_destroy();
+header('location: ../index.php');

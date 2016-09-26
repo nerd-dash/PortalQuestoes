@@ -17,7 +17,7 @@ $questao = $_POST['questao'];
 $correta = preg_replace("/[^0-9]/", "", $_POST['altCorreta']);
 
 
-$numRespostas = 4;
+$numRespostas = count($_POST) - 2;
 $respostas = [];
 
 for ($x = 0; $x <= $numRespostas - 1; $x++) {

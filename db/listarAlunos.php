@@ -10,22 +10,60 @@ require 'block.php';
 require_once "dbConnect.php";
 
 $idDisciplina = $_SESSION['idDisciplina'];
-$numeroDeAulas = $_SESSION['numeroDeAulas'];
 
-$query = "SELECT a.idAluno, a.nome, d.presencas FROM alunos as a, aluno_disciplina as d WHERE a.idAluno = d.idAluno AND d.idDisciplina = '$idDisciplina';";
+$queryOcorrencia = "SELECT idOcorrencia, abrev FROM `ocorrencias`";
+$sqlOcorrencia = mysqli_query($dbConnection, $queryOcorrencia);
+
+
+while ($row = mysqli_fetch_array($sqlOcorrencia)) {
+
+	$id = $row['idOcorrencia'];	
+	$abrev = $row['abrev'];
+	$ocorrencias[$id] = $abrev;
+	
+}
+
+
+
+$query = "SELECT a.idAluno, a.nome FROM alunos as a, aluno_disciplina as d WHERE a.idAluno = d.idAluno AND d.idDisciplina = '".$idDisciplina."'";
+
 
 $sql = mysqli_query($dbConnection, $query);
 
-if (mysqli_num_rows($sql) > 0) {
-    
-    while ($row = mysqli_fetch_array($sql)) {
 
-        $info = $row['nome'] . " - " . $row['presencas'] ." de " . $numeroDeAulas . " presenças";
-        $id = $row['idAluno'];
-        echo "<div><input type='checkbox' name='alunos[]' value='$id'><p id='aluno$id'> $info </p></div>";
-    }
+
+if (mysqli_num_rows($sql) > 0) {
+	$index = 0;
+	while ($row = mysqli_fetch_array($sql)) {
+
+		$nome = $row['nome'];
+		$id = $row['idAluno'];
+
+		echo "<div class='row-fluid header'>
+				<div class='input-group'>
+					<span class='input-group-addon'>";
+		
+		for ($i=1; $i <= count($ocorrencias); $i++) { 
+			if($i == 1){
+				$checked = "checked";
+			} else {
+				$checked = "";
+			}
+			echo "			<input type='radio' name='ocorrencia".($index)."' id='".$i."' value='".$i."' $checked >". $ocorrencias[$i];
+		}
+		echo "		</span>
+					<p class='form-control'>
+						$nome
+					</p>
+				</div>
+				<input type='hidden' value='".$id."' name='aluno".$index."'>
+			</div>";
+		$index++;
+	}
 } else {
-    echo "<div><label>Não há alunos cadastrados nesta matéria.</label><div>";
+	echo "<div class='alert alert-warning' role='alert'>Não há alunos matriculados nesta matéria.</div>";
 }
 
 mysqli_close($dbConnection);
+
+?>

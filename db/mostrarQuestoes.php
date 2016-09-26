@@ -17,7 +17,8 @@ if (mysqli_num_rows($sql) > 0) {
 
         $questao = $row['questao'];
         $id = $row['idQuestao'];
-        echo "<div><h3 id='questao$id'> $questao </h3>";
+        echo "<div class='panel panel-default'><div class='panel-heading'><div class='radio-inline'>$questao</div></div><div class='panel-body'>";
+
         $queryAlternativas = "SELECT resposta, correta FROM `alternativas` WHERE idQuestao = '$id'";
         $sqlAlternativas = mysqli_query($dbConnection, $queryAlternativas);
         while ($alt = mysqli_fetch_array($sqlAlternativas)) {
@@ -28,10 +29,10 @@ if (mysqli_num_rows($sql) > 0) {
                 echo "<p>" . $alt['resposta'] . "</p>";
             }
         }
-        echo "</div>";
+         echo "</div></div>";
     }
 } else {
-    echo "<div><label>Não há questões cadastradas.</label><div>";
+    echo "<div class='alert alert-warning' role='alert'>Não há questões cadastradas.</div>";
 }
 
 mysqli_close($dbConnection);

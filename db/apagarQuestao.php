@@ -31,7 +31,7 @@ if (isset($_POST['questoes'])) {
 
 
     if ($sqlResult) {
-        echo "<script> alert('As questões foram apagadas!'); window.location.replace('../areadoprofessor/menu.php');</script>";
+        echo "<script> alert('As questões foram apagadas!'); window.location.replace('../areadoprofessor/apagaQuestao.php');</script>";
     } else {
         die("Erro ao apagar questão :" . mysqli_errno($dbConnection));
     }

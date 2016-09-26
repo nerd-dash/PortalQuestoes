@@ -9,31 +9,42 @@
 session_start();
 require 'block.php';
 
-if (isset($_POST['alunos'])) {
+
+if (isset($_POST)) {
 
     require_once 'dbConnect.php';
-    $alunos = $_POST['alunos'];
+    $quantAlunos = count($_POST)/2;
+
+    for ($i=0; $i < $quantAlunos ; $i++) { 
+        $alunos[] = $_POST['aluno'.$i];
+    }
+    
+    for ($i=0; $i < $quantAlunos ; $i++) { 
+        $ocorrencias[] = $_POST['ocorrencia'.$i];
+    }
     
     $idDisciplina = $_SESSION['idDisciplina'];
 
-    $idAlunosList = "";
+    $valuesList = "";
 
-    $N = count($alunos);
+    $quantAlunos = count($_POST)/2;
 
-    for ($i = 0; $i < $N; $i++) {
-        $idAlunosList = $idAlunosList . $alunos[$i];
-        if ($i < $N - 1) {
-            $idAlunosList = $idAlunosList . ",";
+    for ($i = 0; $i < $quantAlunos; $i++) {
+        $valuesList = $valuesList . "(" .$alunos[$i] .",". $idDisciplina .",". $ocorrencias[$i] .", CURDATE())" ;
+        if ($i < $quantAlunos - 1) {
+            $valuesList = $valuesList . ",";
         }
     }
-    $query = "UPDATE aluno_disciplina SET presencas = presencas + 1 WHERE idDisciplina = '$idDisciplina' AND idAluno IN ($idAlunosList)";
+    $query = "INSERT INTO `frequencias` (`idAluno`, `idDisciplina`, `idOcorrencia`, `dataOcorrencia`) VALUES ".$valuesList.";";
+
     $sqlResult = mysqli_query($dbConnection, $query);
 
 
     if ($sqlResult) {
         echo "<script> alert('Os dados de presença foram salvos!'); window.location.replace('../areadoprofessor/lancaFrequencia.php');</script>";
     } else {
-        die("Erro ao registrar presenças :" . mysqli_errno($dbConnection));
+        echo("Erro ao registrar presenças :" . mysqli_errno($dbConnection));
+        header("LOCATION: ../areadoprofessor/lancaFrequencia.php");
     }
 
     mysqli_close($dbConnection);

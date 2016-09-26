@@ -20,7 +20,7 @@ $sql = mysqli_query($dbConnection, $query);
         $_SESSION['idDisciplina'] = $row['idDisciplina'];
         $_SESSION['descDisciplina'] = $row['materia']  . " - " . $row['periodo'] ."º período "
            . $row['semestre'] ."º semestre de ". $row['ano'];
-        $_SESSION['numeroDeAulas'] = $row['numeroDeAulas'];
+        
     }
 
 header("Location: ../areadoprofessor/menu.php");

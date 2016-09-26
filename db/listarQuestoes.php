@@ -14,14 +14,15 @@ $query = "SELECT questao, idQuestao FROM `questoes` WHERE cpf = '$cpf' and idDis
 $sql = mysqli_query($dbConnection, $query);
 
 if (mysqli_num_rows($sql) > 0) {
-    while ($row = mysqli_fetch_array($sql)) {
+	while ($row = mysqli_fetch_array($sql)) {
 
-        $questao = $row['questao'];
-        $id = $row['idQuestao'];
-        echo "<div><input type='checkbox' name='questoes[]' value='$id'><p id='questao$id'> $questao </p></div>";
-    }
+		$questao = $row['questao'];
+		$id = $row['idQuestao'];
+		
+		echo "<div class='panel panel-default clickable'><div class='panel-heading'><div class='checkbox-inline'><input type='checkbox' name='questoes[]' value='$id'><p id='questao$id'>$questao</p></div></div></div>";
+	}
 } else {
-    echo "<div><label>Não há questões cadastradas.</label><div>";
+	echo "<div class='alert alert-warning' role='alert'>Não existem questões cadastrardas.</div>";
 }
 
 mysqli_close($dbConnection);

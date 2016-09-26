@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <?php
@@ -7,7 +6,7 @@
     ?>
     <meta charset="UTF-8" http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portal do Professor</title>
+    <title></title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
@@ -26,22 +25,25 @@
             </div>
         </nav>
     </section>
-    <section class="panel panel-primary ">
-        <div class="panel-heading container-fluid">Menu Principal</div>
+    <section class="panel panel-primary">
+        <div class="panel-heading container-fluid">Relatório de Frequência</div>
         <div class="panel-body">
-        
-                <a class="list-group-item" href="novaQuestao.php">Inserir Nova Questão</a>
-                <a class="list-group-item" href="apagaQuestao.php">Apagar Questão</a>
-                <a class="list-group-item" href="atualizaQuestao.php">Atualizar Questão</a>
-                <a class="list-group-item" href="mostraQuestoes.php">Mostrar todas Questões</a>
-                <a class="list-group-item" href="montaProva.php">Montar uma Prova</a>
-                <a class="list-group-item" href="lancaFrequencia.php">Lançamento de Frequência</a>
-                <a class="list-group-item" href="relatorioFrequencia.php">Relatório de Frequência</a>
-                <a class="list-group-item list-group-item-warning"" href="../db/destroySession.php">Sair</a>
-            </div>
-        </section>
-    </div>
+            <form method="post" action="relatorioDetalhado.php" onsubmit="return checkRadio()" >
+                <div class="form-group">
+                    <?php
+                    include_once '../db/listaAlunosFrequencia.php';
+                    ?>
+                    <input type="hidden" name="hiddenInput" id="hiddenInput" > <!-- o js vai atribuir a desc da prova selecionada -->
+                </div>
+                <div class="form-group">                    
+                    <button class="btn btn-primary " type="submit">Detalhar</button>
+                    <a class="btn btn-default " role="button" href="menu.php">Voltar ao Menu</a>
+                </div>
+            </form>
+        </div>
+    </section>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
 </body>
 </html>
