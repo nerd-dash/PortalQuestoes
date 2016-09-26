@@ -9,7 +9,9 @@
 require 'block.php';
 require_once "dbConnect.php";
 
-$query = "SELECT questao, idQuestao FROM `questoes` WHERE cpf = '$cpf'";
+$idDisciplina = preg_replace("/[^0-9]/", "", $_SESSION['idDisciplina']);
+
+$query = "SELECT questao, idQuestao FROM `questoes` WHERE cpf = '$cpf' AND idDisciplina = '$idDisciplina'";
 $sql = mysqli_query($dbConnection, $query);
 
 if (mysqli_num_rows($sql) > 0) {
