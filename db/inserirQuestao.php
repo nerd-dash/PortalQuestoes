@@ -38,11 +38,11 @@ if ($sqlResult) {
         }
         $sqlStr = "INSERT INTO alternativas (resposta, idQuestao, correta) VALUES ('$respostas[$i]','$ultimoId','$respCerta')";
         $sqlResult = mysqli_query($dbConnection, $sqlStr);
-        if (!$sqlResult) {
-            die("Erro ao inserir respostas :" . mysqli_errno($dbConnection));
-        } else {
-            echo "<script> alert('Sua questão foi armazenada!'); window.history.back();</script>";
-        }
+    }
+    if (!$sqlResult) {
+        die("Erro ao inserir respostas :" . mysqli_errno($dbConnection));
+    } else {
+        echo "<script> alert('Sua questão foi armazenada!'); window.history.back();</script>";
     }
 }
 mysqli_close($dbConnection);
